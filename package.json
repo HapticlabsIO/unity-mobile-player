@@ -4,6 +4,13 @@
   "displayName": "Hapticlabs Player",
   "description": "Play rich, custom haptic effects, designed in Hapticlabs Studio, on mobile devices.",
   "unity": "2019.1",
+  "samples": [
+    {
+      "displayName": "Buttons Sample",
+      "description": "A sample scene demonstrating how to trigger haptic effects from UI buttons.",
+      "path": "Samples/Buttons"
+    }
+  ],
   "dependencies": {
     "com.google.external-dependency-manager": "1.2.186"
   }
