@@ -17,9 +17,9 @@ Custom haptics are file-based. For Android and iOS to be able to play back these
 
 The custom haptics sample requires custom haptic files to be present in your project's `Assets/StreamingAssets` directory.
 
-- After importing the sample, locate the `Samples/HapticlabsPlayer/<version>/Buttons/Assets/StreamingAssets` folder in your project.
+- After importing the sample, locate the `Assets/Samples/HapticlabsPlayer/<version>/Buttons/Assets/StreamingAssets` folder in your project.
 - If `Assets/StreamingAssets` does not exist in your project, create it.
-- Manually copy all files and folders from `Samples/HapticlabsPlayer/<version>/Buttons/Assets/StreamingAssets` to your project's `Assets/StreamingAssets` directory.
+- Manually copy all files and folders from `Assets/Samples/HapticlabsPlayer/<version>/Buttons/Assets/StreamingAssets` to your project's `Assets/StreamingAssets` directory.
 
 ### 2. Reference StreamingAssets in Scripts
 
