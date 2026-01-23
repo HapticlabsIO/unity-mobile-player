@@ -27,32 +27,6 @@ namespace Hapticlabs.Player
 #endif
         }
 
-        private bool IsValidStreamingAssetsPath(string relativePath)
-        {
-            if (string.IsNullOrEmpty(relativePath)) return false;
-            if (relativePath.Contains("..") || Path.IsPathRooted(relativePath)) return false;
-
-            string fullPath = Path.GetFullPath(Path.Combine(Application.streamingAssetsPath, relativePath));
-            string streamingAssetsFullPath = Path.GetFullPath(Application.streamingAssetsPath);
-
-            // Ensure the resolved path is within StreamingAssets and the file exists
-            return fullPath.StartsWith(streamingAssetsFullPath) && System.IO.File.Exists(fullPath);
-        }
-
-        private void OnValidate()
-        {
-            if (!IsValidStreamingAssetsPath(androidPath))
-            {
-                Debug.LogWarning("androidPath must be a valid path within Assets/StreamingAssets.");
-                androidPath = string.Empty;
-            }
-            if (!IsValidStreamingAssetsPath(iosPath))
-            {
-                Debug.LogWarning("iosPath must be a valid path within Assets/StreamingAssets.");
-                iosPath = string.Empty;
-            }
-        }
-
         // Call this method to trigger haptic playback
         /// <summary>
         /// Triggers playback of the referenced haptic files using the service.

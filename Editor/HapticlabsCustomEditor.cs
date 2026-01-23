@@ -8,6 +8,36 @@ namespace Hapticlabs.Player
     [CustomEditor(typeof(HapticlabsCustom))]
     public class CustomHapticsEditor : Editor
     {
+        private bool DrawPathField(string label, SerializedProperty pathProp, string fileExtension, string dialogTitle)
+        {
+            bool wasSelected = false;
+            EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
+            EditorGUILayout.BeginHorizontal();
+            pathProp.stringValue = EditorGUILayout.TextField(pathProp.stringValue);
+            if (GUILayout.Button("Select", GUILayout.MaxWidth(60)))
+            {
+                string selected = EditorUtility.OpenFilePanel(dialogTitle, Application.streamingAssetsPath, fileExtension);
+                if (!string.IsNullOrEmpty(selected))
+                {
+                    string rel = GetRelativeStreamingAssetsPath(selected);
+                    if (!string.IsNullOrEmpty(rel))
+                    {
+                        pathProp.stringValue = rel;
+                        wasSelected = true;
+                    }
+                    else
+                        Debug.LogWarning("Selected file is not within StreamingAssets.");
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            if (!IsValidStreamingAssetsPath(pathProp.stringValue))
+            {
+                EditorGUILayout.HelpBox($"{label} must be a valid path within Assets/StreamingAssets.", MessageType.Warning);
+            }
+            return wasSelected;
+        }
+
+
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -15,50 +45,17 @@ namespace Hapticlabs.Player
             var androidPathProp = serializedObject.FindProperty("androidPath");
             var iosPathProp = serializedObject.FindProperty("iosPath");
 
-            // Android Path File Picker
-            EditorGUILayout.LabelField("Android HAC Path", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-            androidPathProp.stringValue = EditorGUILayout.TextField(androidPathProp.stringValue);
-            if (GUILayout.Button("Select", GUILayout.MaxWidth(60)))
-            {
-                string selected = EditorUtility.OpenFilePanel("Select Android HAC File", Application.streamingAssetsPath, "hac");
-                if (!string.IsNullOrEmpty(selected))
-                {
-                    string rel = GetRelativeStreamingAssetsPath(selected);
-                    if (!string.IsNullOrEmpty(rel))
-                        androidPathProp.stringValue = rel;
-                    else
-                        Debug.LogWarning("Selected file is not within StreamingAssets.");
-                }
-            }
-            EditorGUILayout.EndHorizontal();
-            if (!IsValidStreamingAssetsPath(androidPathProp.stringValue))
-            {
-                EditorGUILayout.HelpBox("androidPath must be a valid path within Assets/StreamingAssets.", MessageType.Warning);
-            }
 
             // iOS Path File Picker
-            EditorGUILayout.LabelField("iOS AHAP Path", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-            iosPathProp.stringValue = EditorGUILayout.TextField(iosPathProp.stringValue);
-            if (GUILayout.Button("Select", GUILayout.MaxWidth(60)))
+            if (DrawPathField("Android HAC Path", androidPathProp, "hac", "Select Android HAC File"))
             {
-                string selected = EditorUtility.OpenFilePanel("Select iOS AHAP File", Application.streamingAssetsPath, "ahap");
-                if (!string.IsNullOrEmpty(selected))
-                {
-                    string rel = GetRelativeStreamingAssetsPath(selected);
-                    if (!string.IsNullOrEmpty(rel))
-                        iosPathProp.stringValue = rel;
-                    else
-                        Debug.LogWarning("Selected file is not within StreamingAssets.");
-                }
-            }
-            EditorGUILayout.EndHorizontal();
-            if (!IsValidStreamingAssetsPath(iosPathProp.stringValue))
-            {
-                EditorGUILayout.HelpBox("iosPath must be a valid path within Assets/StreamingAssets.", MessageType.Warning);
+                // Need to apply changes if a new file was selected
+                serializedObject.ApplyModifiedProperties();
             }
 
+
+            // Android Path File Picker
+            DrawPathField("iOS AHAP Path", iosPathProp, "ahap", "Select iOS AHAP File");
             serializedObject.ApplyModifiedProperties();
         }
 
