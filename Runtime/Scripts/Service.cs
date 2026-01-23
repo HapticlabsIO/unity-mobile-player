@@ -87,6 +87,13 @@ namespace Hapticlabs.Player
 #endif
         }
 
+        /// <summary>
+        /// Plays a haptic pattern for the current platform (Android or iOS).
+        /// </summary>
+        /// <param name="androidPath">Path to the Android .hac file in Android's assets/ directory. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.hac", use "AndroidSamples/Button.hac"</param>
+        /// <param name="iosPath">Path to the iOS .ahap file in the iOS app's main bundle. For files in Unity's Assets/StreamingAssets, add the prefix "Data/Raw/", e.g. for "Assets/StreamingAssets/iOSSamples/Button.ahap", use "Data/Raw/iOSSamples/Button.ahap"</param>
+        /// <param name="onCompletion">Callback invoked on successful playback.</param>
+        /// <param name="onFailure">Callback invoked if playback fails.</param>
         public void Play(string androidPath, string iosPath, CompletionCallback onCompletion = null, FailureCallback onFailure = null)
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -98,6 +105,11 @@ namespace Hapticlabs.Player
 #endif
         }
 
+        /// <summary>
+        /// Plays a built-in haptic effect for the current platform.
+        /// </summary>
+        /// <param name="androidEffect">Android built-in effect enum value.</param>
+        /// <param name="iosEffect">iOS built-in effect enum value.</param>
         public void PlayBuiltIn(AndroidBuiltInEffect androidEffect, IOSBuiltInEffect iosEffect)
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -110,6 +122,12 @@ namespace Hapticlabs.Player
         }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
+            /// <summary>
+            /// Plays a .hac file on Android.
+            /// </summary>
+            /// <param name="hacPath">Path to the .hac file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.hac", use "AndroidSamples/Button.hac"</param>
+            /// <param name="onCompletion">Callback invoked on successful playback.</param>
+            /// <param name="onFailure">Callback invoked if playback fails.</param>
 		public void PlayAndroid(string hacPath, CompletionCallback onCompletion = null, FailureCallback onFailure = null)
 		{
 			try
@@ -123,6 +141,10 @@ namespace Hapticlabs.Player
 			}
 		}
 
+            /// <summary>
+            /// Plays a predefined Android haptic effect.
+            /// </summary>
+            /// <param name="effect">Android built-in effect enum value.</param>
         public void PlayPredefinedAndroidEffect(AndroidBuiltInEffect effect)
         {
             try
@@ -152,6 +174,10 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Preloads a .hac file for Android for lower latency playback.
+            /// </summary>
+            /// <param name="hacPath">Path to the .hac file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.hac", use "AndroidSamples/Button.hac"</param>
         public void PreloadAndroid(string hacPath)
         {
             try
@@ -164,6 +190,12 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Plays a .hla file on Android.
+            /// </summary>
+            /// <param name="hlaPath">Path to the .hla file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.hla", use "AndroidSamples/Button.hla"</param>
+            /// <param name="onCompletion">Callback invoked on successful playback.</param>
+            /// <param name="onFailure">Callback invoked if playback fails.</param>
         public void PlayHLA(string hlaPath, CompletionCallback onCompletion = null, FailureCallback onFailure = null)
         {
             try
@@ -177,6 +209,12 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Plays a .hac file on Android.
+            /// </summary>
+            /// <param name="hacPath">Path to the .hac file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.hac", use "AndroidSamples/Button.hac"</param>
+            /// <param name="onCompletion">Callback invoked on successful playback.</param>
+            /// <param name="onFailure">Callback invoked if playback fails.</param>
         public void PlayHAC(string hacPath, CompletionCallback onCompletion = null, FailureCallback onFailure = null)
         {
             try
@@ -190,6 +228,12 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Plays an .ogg file on Android.
+            /// </summary>
+            /// <param name="oggPath">Path to the .ogg file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.ogg", use "AndroidSamples/Button.ogg"</param>
+            /// <param name="onCompletion">Callback invoked on successful playback.</param>
+            /// <param name="onFailure">Callback invoked if playback fails.</param>
         public void PlayOGG(string oggPath, CompletionCallback onCompletion = null, FailureCallback onFailure = null)
         {
             try
@@ -203,6 +247,10 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Preloads an .ogg file for Android for lower latency playback.
+            /// </summary>
+            /// <param name="oggPath">Path to the .ogg file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.ogg", use "AndroidSamples/Button.ogg"</param>
         public void PreloadOGG(string oggPath)
         {
             try
@@ -215,6 +263,10 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Unloads a specific .hac file or directory from memory.
+            /// </summary>
+            /// <param name="directoryOrHacPath">Path to the .hac file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.hac", use "AndroidSamples/Button.hac"</param>
         public void Unload(string directoryOrHacPath)
         {
             try
@@ -227,6 +279,10 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Unloads a specific .ogg file from memory.
+            /// </summary>
+            /// <param name="oggPath">Path to the .ogg file. For files in Unity's Assets/StreamingAssets, use the relative path, e.g. for "Assets/StreamingAssets/AndroidSamples/Button.ogg", use "AndroidSamples/Button.ogg"</param>
         public void UnloadOGG(string oggPath)
         {
             try
@@ -239,6 +295,9 @@ namespace Hapticlabs.Player
             }
         }
 
+            /// <summary>
+            /// Unloads all preloaded haptic files from memory.
+            /// </summary>
         public void UnloadAll()
         {
             try
@@ -303,6 +362,12 @@ namespace Hapticlabs.Player
         return Interlocked.Increment(ref iosCallbackIdCounter);
     }
 
+        /// <summary>
+        /// Plays an .ahap file on iOS.
+        /// </summary>
+        /// <param name="ahapPath">Path to the .ahap file. For files in Unity's Assets/StreamingAssets, add the prefix "Data/Raw/", e.g. for "Assets/StreamingAssets/iOSSamples/Button.ahap", use "Data/Raw/iOSSamples/Button.ahap"</param>
+        /// <param name="onCompletion">Callback invoked on successful playback.</param>
+        /// <param name="onFailure">Callback invoked if playback fails.</param>
     public void PlayAHAP(string ahapPath, CompletionCallback onCompletion = null, FailureCallback onFailure = null)
     {
         int callbackId = GetNextIOSCallbackId();
@@ -311,26 +376,44 @@ namespace Hapticlabs.Player
         _playIOSAHAP(ahapPath, callbackId, OnIOSAHAPPlayComplete, OnIOSAHAPPlayFailure);
     }
 
+        /// <summary>
+        /// Mutes or unmutes haptic playback for .ahap files on iOS.
+        /// </summary>
+        /// <param name="muted">True to mute, false to unmute.</param>
     public void SetAHAPHapticsMuted(bool muted)
     {
         _setIOSAHAPHapticsMuted(muted);
     }
 
+        /// <summary>
+        /// Returns whether haptic playback is muted for .ahap files on iOS.
+        /// </summary>
     public bool IsAHAPHapticsMuted()
     {
         return _isIOSAHAPHapticsMuted();
     }
 
+        /// <summary>
+        /// Mutes or unmutes audio playback for .ahap files on iOS.
+        /// </summary>
+        /// <param name="muted">True to mute, false to unmute.</param>
     public void SetAHAPAudioMuted(bool muted)
     {
         _setIOSAHAPAudioMuted(muted);
     }
 
+        /// <summary>
+        /// Returns whether audio playback is muted for .ahap files on iOS.
+        /// </summary>
     public bool IsAHAPAudioMuted()
     {
         return _isIOSAHAPAudioMuted();
     }
 
+        /// <summary>
+        /// Plays a built-in iOS haptic effect.
+        /// </summary>
+        /// <param name="effect">iOS built-in effect enum value.</param>
     public void PlayPredefinedIOSEffect(IOSBuiltInEffect effect)
     {
         switch (effect)

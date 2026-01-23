@@ -54,6 +54,9 @@ namespace Hapticlabs.Player
         }
 
         // Call this method to trigger haptic playback
+        /// <summary>
+        /// Triggers playback of the referenced haptic files using the service.
+        /// </summary>
         public void TriggerHaptics()
         {
             HapticlabsService.Instance.Play(androidPath, $"Data/Raw/{iosPath}");

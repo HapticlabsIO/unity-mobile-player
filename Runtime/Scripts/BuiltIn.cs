@@ -23,6 +23,9 @@ namespace Hapticlabs.Player
         }
 
         // Call this method to trigger haptic playback
+        /// <summary>
+        /// Triggers playback of the selected built-in haptic effect using the service.
+        /// </summary>
         public void TriggerHaptics()
         {
             HapticlabsService.Instance.PlayBuiltIn(androidEffect, iosEffect);
