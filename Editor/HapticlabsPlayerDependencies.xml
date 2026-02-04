@@ -1,6 +1,6 @@
 <dependencies>
     <androidPackages>
-        <androidPackage spec="io.hapticlabs:hapticlabsplayer:0.6.2" />
+        <androidPackage spec="io.hapticlabs:hapticlabsplayer:0.6.3" />
     </androidPackages>
     <iosPods>
         <iosPod name="HapticlabsPlayer" version="~> 0.2.1" />

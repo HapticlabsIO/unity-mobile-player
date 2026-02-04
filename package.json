@@ -1,6 +1,6 @@
 {
   "name": "io.hapticlabs.unityplayer",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "displayName": "Hapticlabs Player",
   "description": "Play rich, custom haptic effects, designed in Hapticlabs Studio, on mobile devices.",
   "unity": "2019.1",
